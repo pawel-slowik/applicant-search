@@ -23,8 +23,30 @@ class ElasticIndex implements Index
         $searchParams = $this->createParams($criteria, $ordering, $pagination, $returnType);
 
         // @TODO: execute the search using $searchParams
-        $entries = [];
-        $totalCount = 0;
+
+        if (Index::RETURN_DETAILED === $returnType) {
+            $entry = [
+                'email' => 'alice.smith@example.com',
+                'first_name' => 'Alice',
+                'last_name' => 'Smith',
+                'tags' => [
+                    'foo',
+                ],
+                'notes' => [
+                    'bar',
+                    'baz',
+                ],
+            ];
+        } else {
+            $entry = [
+                'email' => 'alice.smith@example.com',
+                'first_name' => 'Alice',
+                'last_name' => 'Smith',
+            ];
+        }
+
+        $entries = array_fill(0, $pagination->getPageSize(), $entry);
+        $totalCount = 25;
 
         return new IndexResult($entries, $totalCount);
     }
