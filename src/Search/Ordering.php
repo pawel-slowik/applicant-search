@@ -13,7 +13,7 @@ abstract class Ordering
         $this->isAscending = $isAscending;
     }
 
-    public function isAscending(): int
+    public function isAscending(): bool
     {
         return $this->isAscending;
     }
