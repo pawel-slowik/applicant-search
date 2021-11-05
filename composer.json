@@ -10,13 +10,23 @@
             "vendor/bin/phpunit"
         ],
         "cs": [
-            "vendor/bin/phpcs -p --standard=phpcs.xml src tests",
+            "vendor/bin/phpcs -p --standard=phpcs.xml src tests public",
             "vendor/bin/php-cs-fixer fix -v --dry-run"
+        ],
+        "dev": [
+            "php -S localhost:8080 -t public public/index.php"
         ]
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.6",
         "friendsofphp/php-cs-fixer": "^3.2",
         "phpunit/phpunit": "^9.5"
+    },
+    "require": {
+        "slim/slim": "^4.9",
+        "php-di/php-di": "^6.3",
+        "nyholm/psr7": "^1.4",
+        "nyholm/psr7-server": "^1.0",
+        "fig/http-message-util": "^1.1"
     }
 }
