@@ -13,13 +13,8 @@ use Recruitment\Web\HttpMethodNotAllowedHandler;
 use Recruitment\Web\HttpNotFoundHandler;
 use Recruitment\Web\SearchController;
 use Slim\App;
-use Slim\CallableResolver;
 use Slim\Exception\HttpMethodNotAllowedException;
 use Slim\Exception\HttpNotFoundException;
-use Slim\Interfaces\CallableResolverInterface;
-use Slim\Interfaces\RouteCollectorInterface;
-use Slim\Interfaces\RouteParserInterface;
-use Slim\Routing\RouteCollector;
 
 $dependencies = [
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
@@ -28,19 +23,6 @@ $dependencies = [
     },
     ResponseFactoryInterface::class => function ($container) {
         return $container->get(Psr17Factory::class);
-    },
-    CallableResolverInterface::class => function ($container) {
-        return new CallableResolver($container);
-    },
-    RouteCollectorInterface::class => function ($container) {
-        return new RouteCollector(
-            $container->get(ResponseFactoryInterface::class),
-            $container->get(CallableResolverInterface::class),
-            $container
-        );
-    },
-    RouteParserInterface::class => function ($container) {
-        return $container->get(RouteCollectorInterface::class)->getRouteParser();
     },
 ];
 
@@ -52,8 +34,6 @@ foreach ($dependencies as $dependency => $factory) {
 $app = new App(
     $container->get(ResponseFactoryInterface::class),
     $container,
-    $container->get(CallableResolverInterface::class),
-    $container->get(RouteCollectorInterface::class)
 );
 
 $errorMiddleware = $app->addErrorMiddleware(false, true, true);
