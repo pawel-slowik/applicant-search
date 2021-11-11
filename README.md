@@ -62,6 +62,18 @@ Here are some possible refinement ideas:
   GraphQL.
 
 
+## Implementation notes
+
+The `Index` interface and it's `ElasticIndex` implementation return generic
+arrays instead of DTOs or entities because it's not known whether the index has
+all the data that's necessary for constructing the response. If it does, it
+should return response DTOs. If it doesn't, it should return it's own "indexy"
+DTOs. For now, it returns arrays as a quick and dirty, temporary solution.
+
+Likewise, the `RETURN_BASIC` and `RETURN_DETAILED` constants are a stopgap
+measure until the "dynamic scope" requirement is cleared up.
+
+
 ## Requirements
 
 - PHP 7.4
