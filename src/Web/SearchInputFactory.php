@@ -8,7 +8,7 @@ use DateTimeImmutable;
 use Psr\Http\Message\ServerRequestInterface;
 use Recruitment\Applicant\Search\Criteria;
 use Recruitment\Applicant\Search\Ordering;
-use Recruitment\Search\OptionalDateRange;
+use Recruitment\Search\DateRange;
 use Recruitment\Search\Pagination;
 use Recruitment\Search\Phrase;
 use UnexpectedValueException;
@@ -36,7 +36,7 @@ class SearchInputFactory
         return new Phrase('');
     }
 
-    private function dateOfBirthFromQueryParams(array $queryParams): OptionalDateRange
+    private function dateOfBirthFromQueryParams(array $queryParams): ?DateRange
     {
         if (
             array_key_exists('dateOfBirth', $queryParams)
@@ -44,13 +44,13 @@ class SearchInputFactory
             && array_key_exists('from', $queryParams['dateOfBirth'])
             && array_key_exists('to', $queryParams['dateOfBirth'])
         ) {
-            return new OptionalDateRange(
+            return new DateRange(
                 $this->dateFromString($queryParams['dateOfBirth']['from']),
                 $this->dateFromString($queryParams['dateOfBirth']['to'])
             );
         }
 
-        return OptionalDateRange::createNull();
+        return null;
     }
 
     private function dateFromString(string $date): DateTimeImmutable

@@ -62,7 +62,7 @@ class SearchInputFactoryTest extends TestCase
             $this->createRequestStubWithParams([])
         );
 
-        $this->assertTrue($criteria->getDateOfBirth()->isNull());
+        $this->assertNull($criteria->getDateOfBirth());
     }
 
     public function testInvalidDates(): void

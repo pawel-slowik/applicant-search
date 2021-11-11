@@ -14,7 +14,6 @@ use Recruitment\Applicant\Search\Index;
 use Recruitment\Applicant\Search\IndexResult;
 use Recruitment\Applicant\Search\Ordering;
 use Recruitment\Applicant\Search\SearchService;
-use Recruitment\Search\OptionalDateRange;
 use Recruitment\Search\Pagination;
 use Recruitment\Search\Phrase;
 
@@ -60,7 +59,7 @@ class SearchServiceTest extends TestCase
         $result = $this->searchService->findBasic(
             new Criteria(
                 new Phrase('foo'),
-                OptionalDateRange::createNull()
+                null
             ),
             new Ordering(Ordering::EMAIL, true),
             new Pagination(1, 100)
@@ -89,7 +88,7 @@ class SearchServiceTest extends TestCase
         $result = $this->searchService->findDetailed(
             new Criteria(
                 new Phrase('foo'),
-                OptionalDateRange::createNull()
+                null
             ),
             new Ordering(Ordering::EMAIL, true),
             new Pagination(2, 20)
