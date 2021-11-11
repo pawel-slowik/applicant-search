@@ -1,6 +1,10 @@
 Yet another job interview task.
 
-## Business requirements
+## „Business” requirements
+
+Note that these aren't exactly _business_ requirements, because of the technical
+details contained therein and because of the imposed solution. The original task
+description follows:
 
 REST endpoint for a candidate search.
 
