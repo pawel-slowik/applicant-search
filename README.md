@@ -74,12 +74,9 @@ Likewise, the `RETURN_BASIC` and `RETURN_DETAILED` constants are a stopgap
 measure until the "dynamic scope" requirement is cleared up.
 
 
-## Requirements
-
-- PHP 7.4
-- Composer
-
 ## Instructions
+
+This implementation requires PHP 7.4 and Composer.
 
 1. install dependencies
 ```
