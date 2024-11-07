@@ -80,17 +80,17 @@ This implementation requires PHP 7.4 and Composer.
 
 1. install dependencies
 ```
-composer install
+docker run -it --user $(id -u) -v "$(pwd):/app" --rm $(docker build . -q) composer install
 ```
 
 2. run tests
 ```
-composer test
+docker run -it --user $(id -u) -v "$(pwd):/app" --rm $(docker build . -q) composer test
 ```
 
 3. start development server
 ```
-composer dev
+docker run -it --user $(id -u) -v "$(pwd):/app" -p 8080:8080 --rm $(docker build . -q) composer dev
 ```
 
 4. execute an example search
