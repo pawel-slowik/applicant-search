@@ -9,8 +9,6 @@ use Nyholm\Psr7\Factory\Psr17Factory;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Recruitment\Applicant\Search\ElasticIndex;
 use Recruitment\Applicant\Search\Index;
-use Recruitment\Web\HttpMethodNotAllowedHandler;
-use Recruitment\Web\HttpNotFoundHandler;
 use Recruitment\Web\SearchController;
 use Slim\App;
 use Slim\Exception\HttpMethodNotAllowedException;
@@ -36,9 +34,7 @@ $app = new App(
     $container,
 );
 
-$errorMiddleware = $app->addErrorMiddleware(false, true, true);
-$errorMiddleware->setErrorHandler(HttpNotFoundException::class, new HttpNotFoundHandler());
-$errorMiddleware->setErrorHandler(HttpMethodNotAllowedException::class, new HttpMethodNotAllowedHandler());
+$app->addErrorMiddleware(false, true, true);
 
 $app->get('/applicant/', SearchController::class);
 
