@@ -11,8 +11,6 @@ use Recruitment\Applicant\Search\ElasticIndex;
 use Recruitment\Applicant\Search\Index;
 use Recruitment\Web\SearchController;
 use Slim\App;
-use Slim\Exception\HttpMethodNotAllowedException;
-use Slim\Exception\HttpNotFoundException;
 
 $dependencies = [
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
