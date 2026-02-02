@@ -47,7 +47,7 @@ class DTOPresenter
         // could be cached if needed
         return array_filter(
             (new ReflectionClass($object))->getMethods(),
-            function (ReflectionMethod $method): bool {
+            static function (ReflectionMethod $method): bool {
                 return $method->isPublic() && 'get' === substr($method->getName(), 0, 3);
             }
         );

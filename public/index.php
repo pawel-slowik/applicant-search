@@ -14,10 +14,10 @@ use Slim\App;
 
 $dependencies = [
     // phpcs:ignore Generic.CodeAnalysis.UnusedFunctionParameter
-    Index::class => function ($container) {
+    Index::class => static function ($container) {
         return new ElasticIndex();
     },
-    ResponseFactoryInterface::class => function ($container) {
+    ResponseFactoryInterface::class => static function ($container) {
         return $container->get(Psr17Factory::class);
     },
 ];
